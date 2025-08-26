@@ -117,7 +117,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 800;
             background: linear-gradient(135deg, #00d4ff, #8b5cf6);
             -webkit-background-clip: text;
@@ -138,6 +138,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            margin-left: 5px;
         }
 
         .nav-links a:hover {
@@ -343,35 +344,6 @@
             color: #ff4757;
         }
 
-        .live-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #00ff88;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            background: #00ff88;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.3;
-            }
-        }
 
         .trade-button {
             background: linear-gradient(135deg, #1a1a2e, #16213e);
@@ -593,7 +565,7 @@
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff, #00d4ff);
+            background: linear-gradient(135deg, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -639,6 +611,113 @@
 
         .mt-3 {
             margin-top: 3rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .coin {
+            color: rgba(15, 15, 35, 0.98);
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+
+        .price-label {
+            color: #00d4ff;
+        }
+
+        .price-value {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            color: black;
+        }
+
+        .price-change {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .price-up {
+            color: green;
+        }
+
+        .price-down {
+            color: red;
+        }
+
+        .price-change svg {
+            margin-right: 5px;
+        }
+
+        .about {
+            color: #938f8f;
+            font-size: 17px;
+            margin-bottom: 1px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .live-crypto {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #00ff88;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-top: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .live-crypto {
+            background: #0f0f23;
+            border-radius: 0%;
+            animation: pulse 3.0s infinite;
+
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
         }
     </style>
 </head>
@@ -705,43 +784,36 @@
             <p class="section-subtitle">Buy, sell, and trade your favorite digital assets with ease. We support the most
                 popular cryptocurrencies in the market.</p>
 
-            <div class="trading-grid">
-                <!-- Bitcoin Card -->
-                <div class="coin-card">
+            <h3 class="live-crypto">• Live Crypto Prices</h3>
+            <div class="grid">
+                <!-- BTC -->
+                <div class="card">
                     <svg class="coin-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="40" cy="40" r="38" fill="#F7931A" stroke="#ffffff" stroke-width="2" />
                         <path
                             d="M35 25V20H32V25H28V20H25V25H20V28H23V52H20V55H25V60H28V55H32V60H35V55H40C48 55 53 50 53 42C53 38 51 35 48 33C50 31 51 28 51 25C51 18 47 15 40 15H35V20V25ZM28 28H40C44 28 46 30 46 33C46 36 44 38 40 38H28V28ZM28 43H40C45 43 48 45 48 48C48 51 45 52 40 52H28V43Z"
                             fill="white" />
                     </svg>
-                    <h3>Bitcoin (BTC)</h3>
-                    <div class="live-indicator">
-                        <div class="live-dot"></div>
-                        <span>LIVE PRICE</span>
+                    <div class="coin">Bitcoin (BTC)</div>
+                    <div class="price-row">
+                        <span class="price-label">USD:</span>
+                        <span class="price-value" id="btc-usd">Loading...</span>
                     </div>
-                    <div class="price-display">
-                        <div class="price-row">
-                            <span class="price-label">USD:</span>
-                            <span class="price-value" id="btc-usd">$114,670.00</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-label">NGN:</span>
-                            <span class="price-value" id="btc-ngn">₦188,581,100</span>
-                        </div>
-                        <div class="price-change price-up" id="btc-change">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M7 14l5-5 5 5z" />
-                            </svg>
-                            +2.15% (24h)
-                        </div>
+                    <div class="price-row">
+                        <span class="price-label">NGN:</span>
+                        <span class="price-value" id="btc-ngn">Loading...</span>
                     </div>
-                    <p>The world's first and most valuable cryptocurrency. Trade BTC with competitive rates and instant
+                    <div class="price-change" id="btc-change">--</div>
+                    <div>s</div>
+                    <p class="about">The world's first and most valuable cryptocurrency. Trade BTC with
+                        competitive rates and instant
                         processing.</p>
+                    <div>s</div>
                     <button class="trade-button" onclick="openTradeModal('BTC')">Trade BTC</button>
                 </div>
 
-                <!-- Solana Card -->
-                <div class="coin-card">
+                <!-- SOL -->
+                <div class="card">
                     <svg class="coin-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="40" cy="40" r="38" fill="url(#solana-gradient)" stroke="#ffffff" stroke-width="2" />
                         <path d="M20 30L25 25H60L55 30H20ZM20 50L25 45H60L55 50H20ZM60 35L55 40H20L25 35H60Z"
@@ -753,34 +825,27 @@
                             </linearGradient>
                         </defs>
                     </svg>
-                    <h3>Solana (SOL)</h3>
-                    <div class="live-indicator">
-                        <div class="live-dot"></div>
-                        <span>LIVE PRICE</span>
+                    <div class="coin">Solana (SOL)</div>
+                    <div class="price-row">
+                        <span class="price-label">USD:</span>
+                        <span class="price-value" id="sol-usd">Loading...</span>
                     </div>
-                    <div class="price-display">
-                        <div class="price-row">
-                            <span class="price-label">USD:</span>
-                            <span class="price-value" id="sol-usd">$186.42</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-label">NGN:</span>
-                            <span class="price-value" id="sol-ngn">₦306,651</span>
-                        </div>
-                        <div class="price-change price-up" id="sol-change">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M7 14l5-5 5 5z" />
-                            </svg>
-                            +4.75% (24h)
-                        </div>
+                    <div class="price-row">
+                        <span class="price-label">NGN:</span>
+                        <span class="price-value" id="sol-ngn">Loading...</span>
                     </div>
-                    <p>High-performance blockchain supporting fast, secure, and scalable decentralized apps and
+                    <div class="price-change" id="sol-change">--</div>
+                    <div>s</div>
+                    <p class="about">High-performance blockchain supporting fast, secure, and scalable decentralized
+                        apps
+                        and
                         marketplaces.</p>
+                    <div>s</div>
                     <button class="trade-button" onclick="openTradeModal('SOL')">Trade SOL</button>
                 </div>
 
-                <!-- USDT Card -->
-                <div class="coin-card">
+                <!-- USDT TRC20 -->
+                <div class="card">
                     <svg class="coin-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="40" cy="40" r="38" fill="#26A17B" stroke="#ffffff" stroke-width="2" />
                         <path
@@ -789,34 +854,27 @@
                         <text x="40" y="45" text-anchor="middle" fill="white" font-size="8"
                             font-weight="bold">USDT</text>
                     </svg>
-                    <h3>Tether (USDT TRC20)</h3>
-                    <div class="live-indicator">
-                        <div class="live-dot"></div>
-                        <span>LIVE PRICE</span>
+                    <div class="coin">Tether (USDT TRC20)</div>
+                    <div class="price-row">
+                        <span class="price-label">USD:</span>
+                        <span class="price-value" id="usdt-usd">Loading...</span>
                     </div>
-                    <div class="price-display">
-                        <div class="price-row">
-                            <span class="price-label">USD:</span>
-                            <span class="price-value" id="usdt-usd">$0.9998</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-label">NGN:</span>
-                            <span class="price-value" id="usdt-ngn">₦1,645</span>
-                        </div>
-                        <div class="price-change price-up" id="usdt-change">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M7 14l5-5 5 5z" />
-                            </svg>
-                            +0.02% (24h)
-                        </div>
+                    <div class="price-row">
+                        <span class="price-label">NGN:</span>
+                        <span class="price-value" id="usdt-ngn">Loading...</span>
                     </div>
-                    <p>The world's most stable cryptocurrency, pegged to the US Dollar for consistent value and
+                    <div class="price-change" id="usdt-change">--</div>
+                    <div>s</div>
+                    <p class="about">The world's most stable cryptocurrency, pegged to the US Dollar for consistent
+                        value
+                        and
                         reliability.</p>
+                    <div>s</div>
                     <button class="trade-button" onclick="openTradeModal('USDT')">Trade USDT</button>
                 </div>
 
-                <!-- Pi Network Card -->
-                <div class="coin-card">
+                <!-- PI -->
+                <div class="card">
                     <svg class="coin-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="40" cy="40" r="38" fill="#7B2CBF" stroke="#ffffff" stroke-width="2" />
                         <path d="M40 20C48 20 55 27 55 35V45C55 53 48 60 40 60C32 60 25 53 25 45V35C25 27 32 20 40 20Z"
@@ -824,68 +882,57 @@
                         <text x="40" y="45" text-anchor="middle" fill="#7B2CBF" font-size="12"
                             font-weight="bold">π</text>
                     </svg>
-                    <h3>Pi Network (PI)</h3>
-                    <div class="live-indicator">
-                        <div class="live-dot"></div>
-                        <span>LIVE PRICE</span>
+                    <div class="coin">Pi Network (PI)</div>
+                    <div class="price-row">
+                        <span class="price-label">USD:</span>
+                        <span class="price-value" id="pi-usd">Loading...</span>
                     </div>
-                    <div class="price-display">
-                        <div class="price-row">
-                            <span class="price-label">USD:</span>
-                            <span class="price-value" id="pi-usd">$38.12</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-label">NGN:</span>
-                            <span class="price-value" id="pi-ngn">₦62,717</span>
-                        </div>
-                        <div class="price-change price-up" id="pi-change">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M7 14l5-5 5 5z" />
-                            </svg>
-                            +8.23% (24h)
-                        </div>
+                    <div class="price-row">
+                        <span class="price-label">NGN:</span>
+                        <span class="price-value" id="pi-ngn">Loading...</span>
                     </div>
-                    <p>A new digital currency being developed by a group of Stanford PhDs, with over 47 million members
+                    <div class="price-change" id="pi-change">--</div>
+                    <div>s</div>
+                    <p class="about">A new digital currency being developed by a group of Stanford PhDs, with over 47
+                        million members
                         worldwide.</p>
+                    <div>s</div>
                     <button class="trade-button" onclick="openTradeModal('PI')">Trade PI</button>
                 </div>
 
-                <!-- XRP Card -->
-                <div class="coin-card">
+                <!-- XRP -->
+                <div class="card">
                     <svg class="coin-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="40" cy="40" r="38" fill="#23292F" stroke="#ffffff" stroke-width="2" />
                         <path
                             d="M25 25L35 35C37 37 43 37 45 35L55 25L60 30L50 40C46 44 34 44 30 40L20 30L25 25ZM25 55L35 45C37 43 43 43 45 45L55 55L60 50L50 40C46 36 34 36 30 40L20 50L25 55Z"
                             fill="white" />
                     </svg>
-                    <h3>Ripple (XRP)</h3>
-                    <div class="live-indicator">
-                        <div class="live-dot"></div>
-                        <span>LIVE PRICE</span>
+                    <div class="coin">Ripple (XRP)</div>
+                    <div class="price-row">
+                        <span class="price-label">USD:</span>
+                        <span class="price-value" id="xrp-usd">Loading...</span>
                     </div>
-                    <div class="price-display">
-                        <div class="price-row">
-                            <span class="price-label">USD:</span>
-                            <span class="price-value" id="xrp-usd">$0.5847</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-label">NGN:</span>
-                            <span class="price-value" id="xrp-ngn">₦962</span>
-                        </div>
-                        <div class="price-change price-down" id="xrp-change">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M7 10l5 5 5-5z" />
-                            </svg>
-                            -1.45% (24h)
-                        </div>
+                    <div class="price-row">
+                        <span class="price-label">NGN:</span>
+                        <span class="price-value" id="xrp-ngn">Loading...</span>
                     </div>
-                    <p>A digital payment protocol that allows fast, low-cost international money transfers and currency
+                    <div class="price-change" id="xrp-change">--</div>
+                    <div>s</div>
+                    <p class="about">A digital payment protocol that allows fast, low-cost international money transfers
+                        and currency
                         exchange.</p>
+                    <div>s</div>
                     <button class="trade-button" onclick="openTradeModal('XRP')">Trade XRP</button>
                 </div>
             </div>
+            <p>A digital payment protocol that allows fast, low-cost international money transfers and currency
+                exchange.</p>
+        </div>
+        </div>
         </div>
     </section>
+
 
     <!-- Payment Section -->
     <section id="payment" class="payment-section">
@@ -934,7 +981,8 @@
             <p class="section-subtitle">Send us your payment details to ensure quick processing and account crediting.
             </p>
 
-            <form class="email-form" onsubmit="handlePaymentConfirmation(event)">
+            <form class="email-form" onsubmit="handlePaymentConfirmation(event)"
+                action="https://formspree.io/f/mqadkdek" method="POST">
                 <div class="form-group">
                     <label for="email">Email Address *</label>
                     <input type="email" id="email" name="email" required placeholder="your.email@example.com">
@@ -942,7 +990,7 @@
 
                 <div class="form-group">
                     <label for="amount">Amount Sent (₦) *</label>
-                    <input type="number" id="amount" name="amount" required placeholder="10000">
+                    <input type="number" id="amount" name="amount" required placeholder="10000" min="500" step="500">
                 </div>
 
                 <div class="form-group">
@@ -1179,6 +1227,52 @@
 
     <!-- JavaScript -->
     <script>
+        const COIN_MAP = {
+            BTC: "bitcoin",
+            SOL: "solana",
+            USDT: "tether",
+            PI: "pi-network",
+            XRP: "ripple"
+        };
+
+        async function fetchPrices() {
+            const ids = Object.values(COIN_MAP).join(",");
+            const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd,ngn&include_24hr_change=true`;
+
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+
+                for (const [symbol, id] of Object.entries(COIN_MAP)) {
+                    const coin = data[id];
+                    if (coin) {
+                        // Update USD & NGN prices
+                        document.getElementById(symbol.toLowerCase() + "-usd").innerText =
+                            `$${coin.usd.toLocaleString()}`;
+                        document.getElementById(symbol.toLowerCase() + "-ngn").innerText =
+                            `₦${coin.ngn.toLocaleString()}`;
+
+                        // Update 24h change
+                        const changeEl = document.getElementById(symbol.toLowerCase() + "-change");
+                        const change = coin.usd_24h_change.toFixed(2);
+                        changeEl.innerHTML = `
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="${change >= 0 ? "M7 14l5-5 5 5z" : "M7 10l5 5 5-5z"}" />
+              </svg>
+              ${change}% (24h)
+            `;
+                        changeEl.className = "price-change " + (change >= 0 ? "price-up" : "price-down");
+                    }
+                }
+            } catch (err) {
+                console.error("Error fetching prices:", err);
+            }
+        }
+
+        // Fetch immediately, then every 15s
+        fetchPrices();
+        setInterval(fetchPrices, 15000);
+
         // FAQ Toggle Functionality
         function toggleFAQ(button) {
             const answer = button.nextElementSibling;
@@ -1284,117 +1378,6 @@
                 observer.observe(card);
             });
         });
-
-        // Real-time price updates with current market data
-        const currentPrices = {
-            'BTC': { usd: 114670.00, change: 2.15 },
-            'SOL': { usd: 186.42, change: 4.75 },
-            'USDT': { usd: 0.9998, change: 0.02 },
-            'PI': { usd: 38.12, change: 8.23 },
-            'XRP': { usd: 0.5847, change: -1.45 }
-        };
-
-        // USD to NGN exchange rate (current as of August 2025)
-        const usdToNgn = 1645.50;
-
-        function formatPrice(price) {
-            if (price < 1) {
-                return price.toFixed(4);
-            } else if (price < 1000) {
-                return price.toFixed(2);
-            } else {
-                return new Intl.NumberFormat('en-US').format(Math.round(price));
-            }
-        }
-
-        function formatNairaPrice(price) {
-            return new Intl.NumberFormat('en-NG', {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            }).format(Math.round(price));
-        }
-
-        function updatePrices() {
-            Object.keys(currentPrices).forEach(coin => {
-                const coinData = currentPrices[coin];
-                const usdPrice = coinData.usd;
-                const ngnPrice = usdPrice * usdToNgn;
-                const change = coinData.change;
-
-                // Update USD price
-                const usdElement = document.getElementById(`${coin.toLowerCase()}-usd`);
-                if (usdElement) {
-                    usdElement.textContent = `${formatPrice(usdPrice)}`;
-                }
-
-                // Update NGN price
-                const ngnElement = document.getElementById(`${coin.toLowerCase()}-ngn`);
-                if (ngnElement) {
-                    ngnElement.textContent = `₦${formatNairaPrice(ngnPrice)}`;
-                }
-
-                // Update price change
-                const changeElement = document.getElementById(`${coin.toLowerCase()}-change`);
-                if (changeElement) {
-                    const isPositive = change >= 0;
-                    changeElement.className = `price-change ${isPositive ? 'price-up' : 'price-down'}`;
-
-                    const arrow = isPositive
-                        ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5z"/></svg>'
-                        : '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>';
-
-                    changeElement.innerHTML = `${arrow}${isPositive ? '+' : ''}${change.toFixed(2)}% (24h)`;
-                }
-            });
-        }
-
-        function simulatePriceUpdates() {
-            Object.keys(currentPrices).forEach(coin => {
-                // Simulate small price movements (±0.5%)
-                const volatility = Math.random() * 0.01 - 0.005; // -0.5% to +0.5%
-                currentPrices[coin].usd *= (1 + volatility);
-
-                // Update 24h change slightly
-                const changeVolatility = (Math.random() * 0.4) - 0.2; // ±0.2%
-                currentPrices[coin].change += changeVolatility;
-
-                // Keep USDT stable (it's a stablecoin)
-                if (coin === 'USDT') {
-                    currentPrices[coin].usd = 0.9998 + (Math.random() * 0.0006 - 0.0003);
-                    currentPrices[coin].change = Math.random() * 0.1 - 0.05;
-                }
-            });
-
-            updatePrices();
-        }
-
-        // Update prices every 15 seconds to simulate live trading
-        setInterval(simulatePriceUpdates, 15000);
-
-        // Initial price update
-        updatePrices();
-
-        // Enhanced trade modal with current prices
-        function openTradeModal(coin) {
-            const coinNames = {
-                'BTC': 'Bitcoin',
-                'SOL': 'Solana',
-                'USDT': 'Tether (USDT TRC20)',
-                'PI': 'Pi Network',
-                'XRP': 'Ripple'
-            };
-
-            const currentPrice = currentPrices[coin];
-            const usdPrice = formatPrice(currentPrice.usd);
-            const ngnPrice = formatNairaPrice(currentPrice.usd * usdToNgn);
-
-            alert(`Ready to trade ${coinNames[coin]}?\n\nCurrent Price:\n• ${usdPrice} USD\n• ₦${ngnPrice} NGN\n\nPlease make a Naira deposit first using our bank details, then confirm your payment below to receive ${coin} in your wallet.`);
-
-            // Scroll to payment section
-            document.getElementById('payment').scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
 
         // Mobile Menu Toggle (for future enhancement)
         function toggleMobileMenu() {
